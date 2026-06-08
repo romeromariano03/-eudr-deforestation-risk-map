@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_1c5b3a15e02b26bd82a5a028acf8f5d1 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+                    <style>
+                        .foliumtooltip {
+                            
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 8px;
+            font-size: 13px;
+            font-family: Arial, sans-serif;
+        
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+</head>
+<body>
+    
+    
+<div style="
+    position: fixed;
+    bottom: 40px; left: 40px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    z-index: 9999;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+">
+    <b>Riesgo EUDR — Deforestación post-2020</b><br><br>
+    <span style="background:#c0392b;padding:2px 10px;border-radius:3px;">&nbsp;</span>&nbsp; Alto (&gt;3% superficie)<br>
+    <span style="background:#e67e22;padding:2px 10px;border-radius:3px;">&nbsp;</span>&nbsp; Medio (1–3%)<br>
+    <span style="background:#27ae60;padding:2px 10px;border-radius:3px;">&nbsp;</span>&nbsp; Bajo (&lt;1%)<br>
+    <span style="background:#f5f5f5;padding:2px 10px;border-radius:3px;border:1px solid #ddd;">&nbsp;</span>&nbsp; Sin datos relevados<br><br>
+    <small>Fuente: UMSEF-MAyDS / EUDR Reg. 2023/1115</small>
+</div>
+    
+<div style="
+    position: fixed;
+    top: 20px; left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    z-index: 9999;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+">
+    Mapa de Riesgo EUDR — Norte Argentino
+</div>
+    
+            <div class="folium-map" id="map_1c5b3a15e02b26bd82a5a028acf8f5d1" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_1c5b3a15e02b26bd82a5a028acf8f5d1 = L.map(
+                "map_1c5b3a15e02b26bd82a5a028acf8f5d1",
+                {
+                    center: [-25.0, -62.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_1f132037d4b53748a17076a624289af3 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_1f132037d4b53748a17076a624289af3.addTo(map_1c5b3a15e02b26bd82a5a028acf8f5d1);
+        
+    
+        function geo_json_39f413ecc9de11fc9e50710fe1a3200d_styler(feature) {
+            switch(feature.id) {
+                case "0": case "1": case "2": case "3": case "5": case "6": case "7": case "8": case "10": case "11": case "12": case "13": case "14": case "16": case "17": case "18": case "19": case "21": case "22": case "23": case "24": case "25": case "28": case "29": case "32": case "34": case "35": case "36": case "39": case "40": case "41": case "42": case "43": case "44": case "45": case "46": case "48": case "49": case "50": case "52": case "53": case "54": case "55": case "57": case "58": case "59": case "60": case "61": case "62": case "64": case "65": case "66": case "67": case "69": case "70": case "71": case "73": case "76": case "77": case "78": case "79": case "80": case "81": 
+                    return {"color": "#dddddd", "fillColor": "transparent", "fillOpacity": 0, "weight": 0.4};
+                case "4": case "15": case "20": case "26": case "27": case "30": case "31": case "33": case "37": case "47": case "51": case "63": case "68": case "72": case "74": case "75": case "82": case "83": 
+                    return {"color": "#ffffff", "fillColor": "#e67e22", "fillOpacity": 1.0, "weight": 1.5};
+                default:
+                    return {"color": "#ffffff", "fillColor": "#c0392b", "fillOpacity": 1.0, "weight": 1.5};
+            }
+        }
+        function geo_json_39f413ecc9de11fc9e50710fe1a3200d_highlighter(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "#333333", "fillOpacity": 1.0, "weight": 3};
+            }
+        }
+
+        function geo_json_39f413ecc9de11fc9e50710fe1a3200d_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_39f413ecc9de11fc9e50710fe1a3200d.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_39f413ecc9de11fc9e50710fe1a3200d_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_39f413ecc9de11fc9e50710fe1a3200d = L.geoJson(null, {
+                onEachFeature: geo_json_39f413ecc9de11fc9e50710fe1a3200d_onEachFeature,
+            
+                style: geo_json_39f413ecc9de11fc9e50710fe1a3200d_styler,
+            ...{
+}
+        });
+
+        function geo_json_39f413ecc9de11fc9e50710fe1a3200d_add (data) {
+            geo_json_39f413ecc9de11fc9e50710fe1a3200d
+                .addData(data);
+        }
+            geo_json_39f413ecc9de11fc9e50710fe1a3200d_add({"bbox": [-67.3440956899683, -30.0205069976617, -58.0626062654551, -22.3958917322092], "features": [{"bbox": [-65.5805831392571, -25.4471786730855, -65.5805831392571, -25.4471786730855], "geometry": {"coordinates": [-65.5805831392571, -25.4471786730855], "type": "Point"}, "id": "0", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "La Vi\u00f1a", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.5880714654829, -25.4252109663753, -64.5880714654829, -25.4252109663753], "geometry": {"coordinates": [-64.5880714654829, -25.4252109663753], "type": "Point"}, "id": "1", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Met\u00e1n", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-66.4548727525442, -25.5643165283563, -66.4548727525442, -25.5643165283563], "geometry": {"coordinates": [-66.4548727525442, -25.5643165283563], "type": "Point"}, "id": "2", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Molinos", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-60.6799749172166, -27.2556537688374, -60.6799749172166, -27.2556537688374], "geometry": {"coordinates": [-60.6799749172166, -27.2556537688374], "type": "Point"}, "id": "3", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "O\u0027Higgins", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-62.7280139284021, -26.5210423501695, -62.7280139284021, -26.5210423501695], "geometry": {"coordinates": [-62.7280139284021, -26.5210423501695], "type": "Point"}, "id": "4", "properties": {"has_deforestadas_post2020": 21800.0, "nombre_departamento": "Alberdi", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 2.87, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-62.5443747130478, -28.0394929915456, -62.5443747130478, -28.0394929915456], "geometry": {"coordinates": [-62.5443747130478, -28.0394929915456], "type": "Point"}, "id": "5", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Juan Felipe Ibarra", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-62.3387633833787, -28.5683250686056, -62.3387633833787, -28.5683250686056], "geometry": {"coordinates": [-62.3387633833787, -28.5683250686056], "type": "Point"}, "id": "6", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "General Taboada", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.9560620821107, -24.7646021168635, -64.9560620821107, -24.7646021168635], "geometry": {"coordinates": [-64.9560620821107, -24.7646021168635], "type": "Point"}, "id": "7", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "General G\u00fcemes", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-66.1746708204562, -25.8295042903902, -66.1746708204562, -25.8295042903902], "geometry": {"coordinates": [-66.1746708204562, -25.8295042903902], "type": "Point"}, "id": "8", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "San Carlos", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-62.280260406999, -30.0205069976617, -62.280260406999, -30.0205069976617], "geometry": {"coordinates": [-62.280260406999, -30.0205069976617], "type": "Point"}, "id": "9", "properties": {"has_deforestadas_post2020": 29400.0, "nombre_departamento": "Rivadavia", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 3.0, "riesgo_label": "Alto", "riesgo_score": 3}, "type": "Feature"}, {"bbox": [-64.0144967880943, -29.3043766197306, -64.0144967880943, -29.3043766197306], "geometry": {"coordinates": [-64.0144967880943, -29.3043766197306], "type": "Point"}, "id": "10", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Ojo de Agua", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.7638924389835, -28.7541678003854, -64.7638924389835, -28.7541678003854], "geometry": {"coordinates": [-64.7638924389835, -28.7541678003854], "type": "Point"}, "id": "11", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Choya", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-66.2026200885047, -25.038755786337, -66.2026200885047, -25.038755786337], "geometry": {"coordinates": [-66.2026200885047, -25.038755786337], "type": "Point"}, "id": "12", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Cachi", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-65.6063327574043, -25.1514413324719, -65.6063327574043, -25.1514413324719], "geometry": {"coordinates": [-65.6063327574043, -25.1514413324719], "type": "Point"}, "id": "13", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Chicoana", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-61.4758065480051, -27.3333760774448, -61.4758065480051, -27.3333760774448], "geometry": {"coordinates": [-61.4758065480051, -27.3333760774448], "type": "Point"}, "id": "14", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "12 de Octubre", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-61.3344270231873, -25.212576905898, -61.3344270231873, -25.212576905898], "geometry": {"coordinates": [-61.3344270231873, -25.212576905898], "type": "Point"}, "id": "15", "properties": {"has_deforestadas_post2020": 28400.0, "nombre_departamento": "General G\u00fcemes", "nombre_provincia": "Chaco", "pct_deforestado": 1.8, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-58.6616277481182, -25.1053773069172, -58.6616277481182, -25.1053773069172], "geometry": {"coordinates": [-58.6616277481182, -25.1053773069172], "type": "Point"}, "id": "16", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Pilag\u00e1s", "nombre_provincia": "Formosa", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-58.5654632415076, -26.4675822193402, -58.5654632415076, -26.4675822193402], "geometry": {"coordinates": [-58.5654632415076, -26.4675822193402], "type": "Point"}, "id": "17", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Laishi", "nombre_provincia": "Formosa", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-59.1592563969217, -25.7672913544641, -59.1592563969217, -25.7672913544641], "geometry": {"coordinates": [-59.1592563969217, -25.7672913544641], "type": "Point"}, "id": "18", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Piran\u00e9", "nombre_provincia": "Formosa", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-65.4038161087861, -24.9885439364757, -65.4038161087861, -24.9885439364757], "geometry": {"coordinates": [-65.4038161087861, -24.9885439364757], "type": "Point"}, "id": "19", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Cerrillos", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-63.8397263286188, -24.8754563539578, -63.8397263286188, -24.8754563539578], "geometry": {"coordinates": [-63.8397263286188, -24.8754563539578], "type": "Point"}, "id": "20", "properties": {"has_deforestadas_post2020": 22800.0, "nombre_departamento": "Anta", "nombre_provincia": "Salta", "pct_deforestado": 2.56, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-65.4290994435937, -24.5623996239199, -65.4290994435937, -24.5623996239199], "geometry": {"coordinates": [-65.4290994435937, -24.5623996239199], "type": "Point"}, "id": "21", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "La Caldera", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-59.5191057139149, -26.7997133020842, -59.5191057139149, -26.7997133020842], "geometry": {"coordinates": [-59.5191057139149, -26.7997133020842], "type": "Point"}, "id": "22", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Sargento Cabral", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.9205141250691, -22.8153452313602, -64.9205141250691, -22.8153452313602], "geometry": {"coordinates": [-64.9205141250691, -22.8153452313602], "type": "Point"}, "id": "23", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Iruya", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-59.827840211346, -27.6596299369227, -59.827840211346, -27.6596299369227], "geometry": {"coordinates": [-59.827840211346, -27.6596299369227], "type": "Point"}, "id": "24", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Tapenag\u00e1", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-59.7745640420007, -27.0446247369186, -59.7745640420007, -27.0446247369186], "geometry": {"coordinates": [-59.7745640420007, -27.0446247369186], "type": "Point"}, "id": "25", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Presidencia de la Plaza", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-60.1729742758302, -26.6663185244379, -60.1729742758302, -26.6663185244379], "geometry": {"coordinates": [-60.1729742758302, -26.6663185244379], "type": "Point"}, "id": "26", "properties": {"has_deforestadas_post2020": 3800.0, "nombre_departamento": "Quitilipi", "nombre_provincia": "Chaco", "pct_deforestado": 1.41, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-60.7563736019567, -26.735179032354, -60.7563736019567, -26.735179032354], "geometry": {"coordinates": [-60.7563736019567, -26.735179032354], "type": "Point"}, "id": "27", "properties": {"has_deforestadas_post2020": 6200.0, "nombre_departamento": "Independencia", "nombre_provincia": "Chaco", "pct_deforestado": 1.63, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-63.854114579261, -28.1877612839021, -63.854114579261, -28.1877612839021], "geometry": {"coordinates": [-63.854114579261, -28.1877612839021], "type": "Point"}, "id": "28", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "San Mart\u00edn", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-59.9584280130313, -24.8750081858591, -59.9584280130313, -24.8750081858591], "geometry": {"coordinates": [-59.9584280130313, -24.8750081858591], "type": "Point"}, "id": "29", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Pati\u00f1o", "nombre_provincia": "Formosa", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-61.2828611773469, -24.0254990220968, -61.2828611773469, -24.0254990220968], "geometry": {"coordinates": [-61.2828611773469, -24.0254990220968], "type": "Point"}, "id": "30", "properties": {"has_deforestadas_post2020": 11600.0, "nombre_departamento": "Bermejo", "nombre_provincia": "Formosa", "pct_deforestado": 1.33, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-62.0770650055764, -23.8544865427827, -62.0770650055764, -23.8544865427827], "geometry": {"coordinates": [-62.0770650055764, -23.8544865427827], "type": "Point"}, "id": "31", "properties": {"has_deforestadas_post2020": 14200.0, "nombre_departamento": "Matacos", "nombre_provincia": "Formosa", "pct_deforestado": 1.45, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-67.3440956899683, -24.6426248978878, -67.3440956899683, -24.6426248978878], "geometry": {"coordinates": [-67.3440956899683, -24.6426248978878], "type": "Point"}, "id": "32", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Los Andes", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.150945650256, -23.4987916315192, -64.150945650256, -23.4987916315192], "geometry": {"coordinates": [-64.150945650256, -23.4987916315192], "type": "Point"}, "id": "33", "properties": {"has_deforestadas_post2020": 17300.0, "nombre_departamento": "Or\u00e1n", "nombre_provincia": "Salta", "pct_deforestado": 2.4, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-63.3484161216539, -29.3883234023198, -63.3484161216539, -29.3883234023198], "geometry": {"coordinates": [-63.3484161216539, -29.3883234023198], "type": "Point"}, "id": "34", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Quebrachos", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-60.6567128818538, -27.7429616104984, -60.6567128818538, -27.7429616104984], "geometry": {"coordinates": [-60.6567128818538, -27.7429616104984], "type": "Point"}, "id": "35", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Mayor Luis J. Fontana", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-61.3012288739823, -27.8647076723602, -61.3012288739823, -27.8647076723602], "geometry": {"coordinates": [-61.3012288739823, -27.8647076723602], "type": "Point"}, "id": "36", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Fray Justo Santa Mar\u00eda de Oro", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-62.7310972270609, -25.9391612005653, -62.7310972270609, -25.9391612005653], "geometry": {"coordinates": [-62.7310972270609, -25.9391612005653], "type": "Point"}, "id": "37", "properties": {"has_deforestadas_post2020": 52300.0, "nombre_departamento": "Copo", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 2.7, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-61.9589813624119, -25.7452119099225, -61.9589813624119, -25.7452119099225], "geometry": {"coordinates": [-61.9589813624119, -25.7452119099225], "type": "Point"}, "id": "38", "properties": {"has_deforestadas_post2020": 41200.0, "nombre_departamento": "Almirante Brown", "nombre_provincia": "Chaco", "pct_deforestado": 3.35, "riesgo_label": "Alto", "riesgo_score": 3}, "type": "Feature"}, {"bbox": [-64.7288089239246, -25.8715613006323, -64.7288089239246, -25.8715613006323], "geometry": {"coordinates": [-64.7288089239246, -25.8715613006323], "type": "Point"}, "id": "39", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Rosario de la Frontera", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.7601169003321, -27.4855424248983, -64.7601169003321, -27.4855424248983], "geometry": {"coordinates": [-64.7601169003321, -27.4855424248983], "type": "Point"}, "id": "40", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "R\u00edo Hondo", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-61.264612522285, -26.9436383020752, -61.264612522285, -26.9436383020752], "geometry": {"coordinates": [-61.264612522285, -26.9436383020752], "type": "Point"}, "id": "41", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "9 de Julio", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.8712241216861, -27.9768511960939, -64.8712241216861, -27.9768511960939], "geometry": {"coordinates": [-64.8712241216861, -27.9768511960939], "type": "Point"}, "id": "42", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Guasay\u00e1n", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.2098658068652, -27.4347067680665, -64.2098658068652, -27.4347067680665], "geometry": {"coordinates": [-64.2098658068652, -27.4347067680665], "type": "Point"}, "id": "43", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Banda", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-63.4461751488241, -28.1061147414452, -63.4461751488241, -28.1061147414452], "geometry": {"coordinates": [-63.4461751488241, -28.1061147414452], "type": "Point"}, "id": "44", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Sarmiento", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-62.2182795085019, -29.0815053728088, -62.2182795085019, -29.0815053728088], "geometry": {"coordinates": [-62.2182795085019, -29.0815053728088], "type": "Point"}, "id": "45", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Belgrano", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-62.5150973801298, -29.2979732282428, -62.5150973801298, -29.2979732282428], "geometry": {"coordinates": [-62.5150973801298, -29.2979732282428], "type": "Point"}, "id": "46", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Aguirre", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-60.4546439783309, -26.3190099893669, -60.4546439783309, -26.3190099893669], "geometry": {"coordinates": [-60.4546439783309, -26.3190099893669], "type": "Point"}, "id": "47", "properties": {"has_deforestadas_post2020": 15600.0, "nombre_departamento": "Maip\u00fa", "nombre_provincia": "Chaco", "pct_deforestado": 2.52, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-63.9075092603375, -27.8539440726978, -63.9075092603375, -27.8539440726978], "geometry": {"coordinates": [-63.9075092603375, -27.8539440726978], "type": "Point"}, "id": "48", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Robles", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.3107274308462, -28.6244804370084, -64.3107274308462, -28.6244804370084], "geometry": {"coordinates": [-64.3107274308462, -28.6244804370084], "type": "Point"}, "id": "49", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Loreto", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.435667540413, -27.8847652276627, -64.435667540413, -27.8847652276627], "geometry": {"coordinates": [-64.435667540413, -27.8847652276627], "type": "Point"}, "id": "50", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Capital", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-62.4639026540336, -27.2982006559922, -62.4639026540336, -27.2982006559922], "geometry": {"coordinates": [-62.4639026540336, -27.2982006559922], "type": "Point"}, "id": "51", "properties": {"has_deforestadas_post2020": 18200.0, "nombre_departamento": "Moreno", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 2.04, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-61.3088349505972, -27.1153502635495, -61.3088349505972, -27.1153502635495], "geometry": {"coordinates": [-61.3088349505972, -27.1153502635495], "type": "Point"}, "id": "52", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Chacabuco", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-65.8767230578258, -26.1257489988731, -65.8767230578258, -26.1257489988731], "geometry": {"coordinates": [-65.8767230578258, -26.1257489988731], "type": "Point"}, "id": "53", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Cafayate", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-63.579632022065, -27.3218567501665, -63.579632022065, -27.3218567501665], "geometry": {"coordinates": [-63.579632022065, -27.3218567501665], "type": "Point"}, "id": "54", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Figueroa", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-63.3035949539634, -28.9187435895832, -63.3035949539634, -28.9187435895832], "geometry": {"coordinates": [-63.3035949539634, -28.9187435895832], "type": "Point"}, "id": "55", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Salavina", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.0917498279144, -26.2199018368927, -64.0917498279144, -26.2199018368927], "geometry": {"coordinates": [-64.0917498279144, -26.2199018368927], "type": "Point"}, "id": "56", "properties": {"has_deforestadas_post2020": 38700.0, "nombre_departamento": "Pellegrini", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 3.46, "riesgo_label": "Alto", "riesgo_score": 3}, "type": "Feature"}, {"bbox": [-63.20376658846, -28.555362665393, -63.20376658846, -28.555362665393], "geometry": {"coordinates": [-63.20376658846, -28.555362665393], "type": "Point"}, "id": "57", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Avellaneda", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-61.3289519563791, -27.6198551557059, -61.3289519563791, -27.6198551557059], "geometry": {"coordinates": [-61.3289519563791, -27.6198551557059], "type": "Point"}, "id": "58", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "2 de Abril", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-65.2713224010013, -24.8897949232452, -65.2713224010013, -24.8897949232452], "geometry": {"coordinates": [-65.2713224010013, -24.8897949232452], "type": "Point"}, "id": "59", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Capital", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.2732683808613, -28.1888486590344, -64.2732683808613, -28.1888486590344], "geometry": {"coordinates": [-64.2732683808613, -28.1888486590344], "type": "Point"}, "id": "60", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Sil\u00edpica", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-65.1760220468639, -26.0848731785427, -65.1760220468639, -26.0848731785427], "geometry": {"coordinates": [-65.1760220468639, -26.0848731785427], "type": "Point"}, "id": "61", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "La Candelaria", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-65.4445406244237, -25.7029584300217, -65.4445406244237, -25.7029584300217], "geometry": {"coordinates": [-65.4445406244237, -25.7029584300217], "type": "Point"}, "id": "62", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Guachipas", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-62.1378892144612, -23.120377014683, -62.1378892144612, -23.120377014683], "geometry": {"coordinates": [-62.1378892144612, -23.120377014683], "type": "Point"}, "id": "63", "properties": {"has_deforestadas_post2020": 19800.0, "nombre_departamento": "Ram\u00f3n Lista", "nombre_provincia": "Formosa", "pct_deforestado": 1.48, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-66.2072973644748, -24.146976523836, -66.2072973644748, -24.146976523836], "geometry": {"coordinates": [-66.2072973644748, -24.146976523836], "type": "Point"}, "id": "64", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "La Poma", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-58.3773174492375, -25.9396352320143, -58.3773174492375, -25.9396352320143], "geometry": {"coordinates": [-58.3773174492375, -25.9396352320143], "type": "Point"}, "id": "65", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Formosa", "nombre_provincia": "Formosa", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-58.0626062654551, -25.3700377166163, -58.0626062654551, -25.3700377166163], "geometry": {"coordinates": [-58.0626062654551, -25.3700377166163], "type": "Point"}, "id": "66", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Pilcomayo", "nombre_provincia": "Formosa", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-59.3467829351985, -27.1388899905163, -59.3467829351985, -27.1388899905163], "geometry": {"coordinates": [-59.3467829351985, -27.1388899905163], "type": "Point"}, "id": "67", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "General Donovan", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-59.4877181570758, -26.3775454900773, -59.4877181570758, -26.3775454900773], "geometry": {"coordinates": [-59.4877181570758, -26.3775454900773], "type": "Point"}, "id": "68", "properties": {"has_deforestadas_post2020": 19800.0, "nombre_departamento": "Libertador General San Mart\u00edn", "nombre_provincia": "Chaco", "pct_deforestado": 2.22, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-58.709116096044, -26.9580421515067, -58.709116096044, -26.9580421515067], "geometry": {"coordinates": [-58.709116096044, -26.9580421515067], "type": "Point"}, "id": "69", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Bermejo", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-62.7386757564942, -29.6150490318213, -62.7386757564942, -29.6150490318213], "geometry": {"coordinates": [-62.7386757564942, -29.6150490318213], "type": "Point"}, "id": "70", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Mitre", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-63.8815639977726, -28.6918181695012, -63.8815639977726, -28.6918181695012], "geometry": {"coordinates": [-63.8815639977726, -28.6918181695012], "type": "Point"}, "id": "71", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Atamisqui", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-64.2724736671085, -26.8996081032586, -64.2724736671085, -26.8996081032586], "geometry": {"coordinates": [-64.2724736671085, -26.8996081032586], "type": "Point"}, "id": "72", "properties": {"has_deforestadas_post2020": 12400.0, "nombre_departamento": "Jim\u00e9nez", "nombre_provincia": "Santiago del Estero", "pct_deforestado": 1.94, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-64.8955647956079, -22.3958917322092, -64.8955647956079, -22.3958917322092], "geometry": {"coordinates": [-64.8955647956079, -22.3958917322092], "type": "Point"}, "id": "73", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Santa Victoria", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-63.6582864287813, -22.7144623805907, -63.6582864287813, -22.7144623805907], "geometry": {"coordinates": [-63.6582864287813, -22.7144623805907], "type": "Point"}, "id": "74", "properties": {"has_deforestadas_post2020": 31200.0, "nombre_departamento": "General Jos\u00e9 de San Mart\u00edn", "nombre_provincia": "Salta", "pct_deforestado": 2.0, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-62.8285940219747, -23.5194718277586, -62.8285940219747, -23.5194718277586], "geometry": {"coordinates": [-62.8285940219747, -23.5194718277586], "type": "Point"}, "id": "75", "properties": {"has_deforestadas_post2020": 44600.0, "nombre_departamento": "Rivadavia", "nombre_provincia": "Salta", "pct_deforestado": 2.05, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-65.8530078405525, -24.5457519055916, -65.8530078405525, -24.5457519055916], "geometry": {"coordinates": [-65.8530078405525, -24.5457519055916], "type": "Point"}, "id": "76", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "Rosario de Lerma", "nombre_provincia": "Salta", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-58.9587415590109, -27.1678037354366, -58.9587415590109, -27.1678037354366], "geometry": {"coordinates": [-58.9587415590109, -27.1678037354366], "type": "Point"}, "id": "77", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "1\u00b0 de Mayo", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-59.1154439908292, -27.7156982892704, -59.1154439908292, -27.7156982892704], "geometry": {"coordinates": [-59.1154439908292, -27.7156982892704], "type": "Point"}, "id": "78", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "San Fernando", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-60.3637302119912, -27.3933734765875, -60.3637302119912, -27.3933734765875], "geometry": {"coordinates": [-60.3637302119912, -27.3933734765875], "type": "Point"}, "id": "79", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "San Lorenzo", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-60.0184594861944, -26.8170406143405, -60.0184594861944, -26.8170406143405], "geometry": {"coordinates": [-60.0184594861944, -26.8170406143405], "type": "Point"}, "id": "80", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "25 de Mayo", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-61.0713338324887, -26.8478157545068, -61.0713338324887, -26.8478157545068], "geometry": {"coordinates": [-61.0713338324887, -26.8478157545068], "type": "Point"}, "id": "81", "properties": {"has_deforestadas_post2020": 0.0, "nombre_departamento": "General Belgrano", "nombre_provincia": "Chaco", "pct_deforestado": 0.0, "riesgo_label": "Sin datos", "riesgo_score": 0}, "type": "Feature"}, {"bbox": [-59.2597877694895, -27.3493250970289, -59.2597877694895, -27.3493250970289], "geometry": {"coordinates": [-59.2597877694895, -27.3493250970289], "type": "Point"}, "id": "82", "properties": {"has_deforestadas_post2020": 8900.0, "nombre_departamento": "Libertad", "nombre_provincia": "Chaco", "pct_deforestado": 2.17, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}, {"bbox": [-60.4612869070114, -26.7853900358381, -60.4612869070114, -26.7853900358381], "geometry": {"coordinates": [-60.4612869070114, -26.7853900358381], "type": "Point"}, "id": "83", "properties": {"has_deforestadas_post2020": 4100.0, "nombre_departamento": "Comandante Fern\u00e1ndez", "nombre_provincia": "Chaco", "pct_deforestado": 1.41, "riesgo_label": "Medio", "riesgo_score": 2}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_39f413ecc9de11fc9e50710fe1a3200d.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = ["nombre_departamento", "nombre_provincia", "riesgo_label", "has_deforestadas_post2020", "pct_deforestado"];
+    let aliases = ["Departamento", "Provincia", "Riesgo EUDR", "Has. deforestadas post-2020", "% superficie afectada"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i].toLocaleString()}</th>
+            
+            <td>${handleObject(layer.feature.properties[v]).toLocaleString()}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  "sticky": false,
+  "className": "foliumtooltip",
+});
+                     
+    
+            geo_json_39f413ecc9de11fc9e50710fe1a3200d.addTo(map_1c5b3a15e02b26bd82a5a028acf8f5d1);
+        
+</script>
+</html>
