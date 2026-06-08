@@ -2,7 +2,7 @@
 
 Interactive geospatial risk assessment tool for EU Deforestation Regulation (EUDR) compliance in Argentina's Gran Chaco region.
 
-![Risk Map Preview](preview.png)
+
 
 ---
 
@@ -106,6 +106,6 @@ The final deliverable is a self-contained HTML file (`riesgo_eudr_norte_argentin
 ## Author
 
 **Mariano Romero**  
-Political Scientist & Energy Economist | Buenos Aires, Argentina  
+Political Scientist| Buenos Aires, Argentina  
 Master's in Energy Economics & Regulation — CEARE, UBA Facultad de Derecho  
 [LinkedIn](https://www.linkedin.com/in/marianoromero23)
