@@ -1,5 +1,5 @@
 # EUDR Deforestation Risk Map — Northern Argentina
-
+Work in progress 
 Interactive geospatial risk assessment tool for EU Deforestation Regulation (EUDR) compliance in Argentina's Gran Chaco region.
 
 
