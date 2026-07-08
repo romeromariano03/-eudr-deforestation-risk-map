@@ -1,112 +1,110 @@
-# EUDR Deforestation Risk Map — Northern Argentina
-Work in progress.
+# Mapa de Riesgo de Deforestación EUDR — Norte de Argentina
+Trabajo en curso.
 
-Interactive geospatial risk assessment tool for EU Deforestation Regulation (EUDR) compliance in Argentina's Gran Chaco region.
-
-
+Herramienta geoespacial interactiva de evaluación de riesgo para el cumplimiento del Reglamento de Deforestación de la UE (EUDR) en la región del Gran Chaco argentino.
 
 ---
 
-## Overview
+## Descripción General
 
-The **EU Deforestation Regulation (Reg. 2023/1115)** requires that commodities placed on the EU market — including soy, corn, and cattle — have not contributed to deforestation after **December 31, 2020**. For Argentine agribusiness operators leasing land in northern provinces, this creates direct operational risk: any lot with post-2020 deforestation activity may trigger compliance failures at the export stage.
+El **Reglamento de Deforestación de la UE (Reg. 2023/1115)** exige que los productos comercializados en el mercado europeo —incluyendo soja, maíz y carne vacuna— no hayan contribuido a la deforestación posterior al **31 de diciembre de 2020**. Para los operadores agroindustriales argentinos que arriendan tierras en las provincias del norte, esto genera un riesgo operativo directo: cualquier lote con actividad de deforestación posterior a 2020 puede provocar fallas de cumplimiento al momento de la exportación.
 
-This project builds a **department-level EUDR deforestation risk index** for the four highest-risk provinces in Argentina's Gran Chaco:
+Este proyecto construye un **índice de riesgo de deforestación EUDR a nivel departamental** para las cuatro provincias de mayor riesgo del Gran Chaco argentino:
 
 - **Chaco**
 - **Santiago del Estero**
 - **Salta**
 - **Formosa**
 
-The output is an interactive HTML map that allows operators to identify which departments carry elevated EUDR exposure **before signing new land-lease contracts**.
+El resultado es un mapa HTML interactivo que permite a los operadores identificar qué departamentos presentan una exposición EUDR elevada **antes de firmar nuevos contratos de arrendamiento**.
 
 ---
 
-## Use Case
+## Caso de Uso
 
-> *"Which departments in northern Argentina should we flag before expanding our lease portfolio?"*
+> *"¿Qué departamentos del norte argentino deberíamos señalar antes de expandir nuestra cartera de arrendamientos?"*
 
-This tool answers that question directly — not as an ESG reporting exercise, but as an **operational due diligence instrument** for agribusiness companies with supply chain exposure to European buyers.
+Esta herramienta responde esa pregunta directamente — no como un ejercicio de reporte ESG, sino como un **instrumento operativo de due diligence** para empresas agroindustriales con exposición en su cadena de suministro hacia compradores europeos.
 
 ---
 
-## Data Sources
+## Fuentes de Datos
 
-| Source | Description |
+| Fuente | Descripción |
 |---|---|
-| **UMSEF-MAyDS** | Unidad de Manejo del Sistema de Evaluación Forestal — deforestation figures (has.) by department, post-2020 |
-| **IGN Argentina** (georef API) | Official department boundaries — `apis.datos.gob.ar/georef` |
-| **EUDR Reg. 2023/1115** | EU regulatory framework defining the December 2020 deforestation cutoff |
+| **UMSEF-MAyDS** | Unidad de Manejo del Sistema de Evaluación Forestal — cifras de deforestación (has.) por departamento, posteriores a 2020 |
+| **IGN Argentina** (API georef) | Límites departamentales oficiales — `apis.datos.gob.ar/georef` |
+| **EUDR Reg. 2023/1115** | Marco regulatorio de la UE que define el corte de diciembre de 2020 para deforestación |
 
 ---
 
-## Risk Scoring Methodology
+## Metodología de Puntuación de Riesgo
 
-Each department is assigned a risk score based on the percentage of its total surface area deforested after December 2020:
+A cada departamento se le asigna un puntaje de riesgo según el porcentaje de su superficie total deforestada después de diciembre de 2020:
 
-| Score | Label | Threshold |
+| Puntaje | Etiqueta | Umbral |
 |---|---|---|
-| 3 | 🔴 Alto (High) | > 3% of surface area |
-| 2 | 🟠 Medio (Medium) | 1–3% |
-| 1 | 🟢 Bajo (Low) | < 1% |
-| 0 | ⬜ Sin datos | No data available |
+| 3 | 🔴 Alto | > 3% de la superficie |
+| 2 | 🟠 Medio | 1–3% |
+| 1 | 🟢 Bajo | < 1% |
+| 0 | ⬜ Sin datos | Sin información disponible |
 
 ---
 
-## Tech Stack
+## Stack Tecnológico
 
 - **Python 3** (Google Colab)
-- `geopandas` — spatial join between deforestation data and official department polygons
-- `folium` — interactive HTML map with tooltips and legend
-- `pandas` — data processing and risk scoring
-- IGN georef API — live download of official Argentine department boundaries
+- `geopandas` — unión espacial entre los datos de deforestación y los polígonos departamentales oficiales
+- `folium` — mapa HTML interactivo con tooltips y leyenda
+- `pandas` — procesamiento de datos y puntuación de riesgo
+- API georef del IGN — descarga en vivo de los límites departamentales oficiales de Argentina
 
 ---
 
-## Repository Structure
+## Estructura del Repositorio
 
 ```
 eudr-deforestation-risk-map/
-├── Georreferenciacion.ipynb     # Full pipeline — run in Google Colab
-├── riesgo_eudr_norte_argentina.html  # Output: interactive map
+├── Georreferenciacion.ipynb     # Pipeline completo — ejecutar en Google Colab
+├── riesgo_eudr_norte_argentina.html  # Resultado: mapa interactivo
 └── README.md
 ```
 
 ---
 
-## How to Run
+## Cómo Ejecutarlo
 
-1. Open `Georreferenciacion.ipynb` in [Google Colab](https://colab.research.google.com/)
-2. Run Cell 1 to install dependencies (`geopandas`, `folium`, `mapclassify`)
-3. Run Cells 2–5 sequentially
-4. Cell 6 downloads the final HTML map to your machine
+1. Abrir `Georreferenciacion.ipynb` en [Google Colab](https://colab.research.google.com/)
+2. Ejecutar la Celda 1 para instalar las dependencias (`geopandas`, `folium`, `mapclassify`)
+3. Ejecutar las Celdas 2 a 5 secuencialmente
+4. La Celda 6 descarga el mapa HTML final a tu equipo
 
-No API keys required. No local installation needed.
-
----
-
-## Output
-
-The final deliverable is a self-contained HTML file (`riesgo_eudr_norte_argentina.html`) that:
-
-- Renders department polygons colored by EUDR risk level
-- Shows interactive tooltips with deforested hectares and % surface affected on hover
-- Includes a legend and title overlay
-- Works offline in any browser — no server required
+No requiere claves de API. No requiere instalación local.
 
 ---
 
-## Context & Limitations
+## Resultado
 
-- Deforestation figures are based on UMSEF public reports (2021–2023). For production use, this pipeline should be validated against **MapBiomas Argentina** vegetation loss layers and **OTBN** (Ordenamiento Territorial de Bosques Nativos) categories under Ley 26.331.
-- The risk index is at the **department level** — lot-level compliance requires polygon intersection with parcel coordinates, which is the next step in the pipeline.
-- This project is a proof-of-concept entry point for a full per-lot EUDR compliance report service.
+El entregable final es un archivo HTML autocontenido (`riesgo_eudr_norte_argentina.html`) que:
+
+- Renderiza los polígonos departamentales coloreados según el nivel de riesgo EUDR
+- Muestra tooltips interactivos con hectáreas deforestadas y % de superficie afectada al pasar el cursor
+- Incluye leyenda y título superpuesto
+- Funciona offline en cualquier navegador — no requiere servidor
 
 ---
 
-## Author
+## Contexto y Limitaciones
 
-**Mariano Romero**  
-Political Scientist| Buenos Aires, Argentina  
-Master's in Energy Economics & Regulation — CEARE, UBA Facultad de Derecho  
+- Las cifras de deforestación se basan en informes públicos de UMSEF (2021–2023). Para uso productivo, este pipeline debería validarse contra las capas de pérdida de vegetación de **MapBiomas Argentina** y las categorías del **OTBN** (Ordenamiento Territorial de Bosques Nativos) bajo la Ley 26.331.
+- El índice de riesgo está construido a **nivel departamental** — el cumplimiento a nivel de lote requiere la intersección de polígonos con coordenadas de parcela, que es el siguiente paso del pipeline.
+- Este proyecto es una prueba de concepto como punto de entrada para un futuro servicio de reporte de cumplimiento EUDR por lote.
+
+---
+
+## Autor
+
+**Mariano Romero**
+Politólogo | Buenos Aires, Argentina
+Maestría en Economía y Regulación Energética — CEARE, UBA Facultad de Derecho
 [LinkedIn](https://www.linkedin.com/in/marianoromero23)
